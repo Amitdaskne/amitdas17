@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Search Engine</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            text-align: center;
+            margin: 50px;
+        }
+        .search-container {
+            max-width: 500px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        input[type="text"] {
+            width: 90%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+        li {
+            padding: 10px;
+            background: white;
+            margin-top: 5px;
+            border-radius: 5px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+        }
+        li a {
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+        }
+        li a:hover {
+            color: blue;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="search-container">
+        <h2>Search Engine</h2>
+        <input type="text" id="searchBox" placeholder="Search here..." onkeyup="searchFunction()">
+        <ul id="searchResults"></ul>
+    </div>
+
+    <script>
+        const data = [
+            { name: "Google", url: "https://www.google.com" },
+            { name: "YouTube", url: "https://www.youtube.com" },
+            { name: "Facebook", url: "https://www.facebook.com" },
+            { name: "Twitter", url: "https://www.twitter.com" },
+            { name: "Instagram", url: "https://www.instagram.com" },
+            { name: "New President Optics", url: "https://www.newpresidentoptics.com" }
+        ];
+
+        function searchFunction() {
+            let input = document.getElementById("searchBox").value.toLowerCase();
+            let resultsList = document.getElementById("searchResults");
+            resultsList.innerHTML = "";
+
+            let results = data.filter(item => item.name.toLowerCase().includes(input));
+
+            results.forEach(item => {
+                let li = document.createElement("li");
+                let a = document.createElement("a");
+                a.href = item.url;
+                a.textContent = item.name;
+                a.target = "_blank";
+                li.appendChild(a);
+                resultsList.appendChild(li);
+            });
+        }
+    </script>
+
+</body>
+</html>
